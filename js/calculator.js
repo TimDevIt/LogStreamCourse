@@ -33,10 +33,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             });
         } else {
             btn.addEventListener('click', ()=>{
-                let result = eval(inputElement.value);
-                let li = createLiElement(inputElement.value,result,inputElement);
-                inputElement.value = result;
-                operations.append(li);
+                try{
+                    let result = inputElement.value;
+                    if(isNaN(result) && result.length>0) {
+                        result = eval(inputElement.value);
+                        let li = createLiElement(inputElement.value,result,inputElement);
+                        inputElement.value = result;
+                        operations.append(li);
+                    }
+                } catch {
+                    alert("неправельный ввод");
+                }
             });
         }
     });
